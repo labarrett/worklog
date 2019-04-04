@@ -21,7 +21,8 @@ def add_to():
     time_spent = input("Time spent in HH:MM: ")
 
     #fix date
-    date = datetime.strftime(intial_date, '%m/%d/%Y')
+    intial_date = datetime.datetime.strptime(intial_date, '%m/%d/%y')
+    date = intial_date.strftime('%m/%d/%y')
     
     #open file    
     with open("work_log.txt", "a") as file:
@@ -38,7 +39,8 @@ def read_file():
         print("\nWORK LOG FILE:")
         for line in file:
             print(line)
-        print("****End of File
+        print("****End of File*****")
+
     run_script()            
 
 #choice C search file, look by or pattern, return results that match
