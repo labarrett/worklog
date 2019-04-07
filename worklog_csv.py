@@ -69,14 +69,19 @@ def read_file():
 #choice C search file, look by or pattern, return results that match
 
 def search_file():
+
     type_of_search = input("Type of Search: \nA) General Search (String) \nB) By Pattern \nAnswer: ")
     if type_of_search == "A":
         string_field = input("What string do you want to search by? ")
     if type_of_search == "B":
         pattern = input("Input regex pattern: ")
 
-        #re.compile(r'pattern)
-    pass
+        with open("work_log.csv", newline='') as csvfile:
+            artreader = csv.reader(csvfile, delimiter = '|')
+            rows = list(artreader)
+            results = re.findall(pattern, rows)
+            print(results)
+    
     
 #then close program and ask to go through options again
 
