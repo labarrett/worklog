@@ -38,16 +38,18 @@ def add_to():
 
     #continue on with input
     time_spent = input("Time spent in HH:MM: ")
+    notes = input("notes")
     
     #open file and add to file (name of task, date, and time spent)      
     with open("work_log.csv", 'a') as csvfile:
-        fieldnames = ['Task', 'Date','Time_spent']
+        fieldnames = ['Task', 'Date','Time_spent', 'Notes']
         filewriter = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
         filewriter.writerow({
             'Task': task,
             'Date': initial_date,
             'Time_spent': time_spent
+            'Notes': notes
 
             })
  
@@ -72,15 +74,18 @@ def search_file():
 
     type_of_search = input("Type of Search: \nA) General Search (String) \nB) By Pattern \nAnswer: ")
     if type_of_search == "A":
-        string_field = input("What string do you want to search by? ")
+        string_field = input("What string do you want to search by? Input date, task name, or time spent ")
     if type_of_search == "B":
         pattern = input("Input regex pattern: ")
 
         with open("work_log.csv", newline='') as csvfile:
             artreader = csv.reader(csvfile, delimiter = '|')
-            rows = list(artreader)
-            results = re.findall(pattern, rows)
-            print(results)
+            for row in artreader:
+                row = str(row)
+                results = re.findall(pattern, row)
+                print(results)
+
+                
     
     
 #then close program and ask to go through options again
