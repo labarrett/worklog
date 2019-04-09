@@ -38,7 +38,6 @@ def add_to():
  
     run_script()
 
-
 #choice A, get date
 def get_date():	
     # repeat all this logic until its valid	
@@ -62,7 +61,7 @@ def read_file():
         artreader = csv.reader(csvfile, delimiter = ',')
         rows = list(artreader)
         for row in rows:
-            print(','.join(row))
+            print(', '.join(row))
         
     run_script()            
 
@@ -84,9 +83,7 @@ def match_results(search):
 
     run_script()
 
-    
 def search_file():
-
     type_of_search = input("Type of Search: \nA) General Search (String) \nB) By Pattern \nAnswer: ").upper()
     if type_of_search == "A":
         string_field = input("What string do you want to search by? Input date, task name, or time spent ")
