@@ -70,11 +70,30 @@ def read_file():
 
 #choice C search file, look by or pattern, return results that match
 
+def match_results:
+
+    
+
 def search_file():
 
     type_of_search = input("Type of Search: \nA) General Search (String) \nB) By Pattern \nAnswer: ")
     if type_of_search == "A":
         string_field = input("What string do you want to search by? Input date, task name, or time spent ")
+
+        match_results = []
+
+        with open("work_log.csv", newline='') as csvfile:
+            artreader = csv.reader(csvfile, delimiter = ',')
+            for row in artreader:
+                results = re.findall(string_field, str(row))
+                if results:
+                  match_results.append(row)                
+
+        print(match_results)
+
+        run_script()
+
+        
     if type_of_search == "B":
         pattern = input("Input regex pattern: ")
 
@@ -89,6 +108,8 @@ def search_file():
 
         print(match_results)
 
+        run_script()
+
                 
 #then close program and ask to go through options again
 
@@ -99,4 +120,3 @@ def run_script():
         
 #run script
 ask_question()
-
