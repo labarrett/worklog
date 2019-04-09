@@ -38,7 +38,7 @@ def add_to():
 
     #continue on with input
     time_spent = input("Time spent in HH:MM: ")
-    notes = input("notes")
+    notes = input("notes: ")
     
     #open file and add to file (name of task, date, and time spent)      
     with open("work_log.csv", 'a') as csvfile:
@@ -48,7 +48,7 @@ def add_to():
         filewriter.writerow({
             'Task': task,
             'Date': initial_date,
-            'Time_spent': time_spent
+            'Time_spent': time_spent,
             'Notes': notes
 
             })
@@ -60,7 +60,7 @@ def add_to():
 def read_file():
     #open file
     with open("work_log.csv", newline='') as csvfile:
-        artreader = csv.reader(csvfile, delimiter = '|')
+        artreader = csv.reader(csvfile, delimiter = ',')
         rows = list(artreader)
         for row in rows:
             print(','.join(row))
@@ -78,16 +78,18 @@ def search_file():
     if type_of_search == "B":
         pattern = input("Input regex pattern: ")
 
+        match_results = []
+
         with open("work_log.csv", newline='') as csvfile:
-            artreader = csv.reader(csvfile, delimiter = '|')
+            artreader = csv.reader(csvfile, delimiter = ',')
             for row in artreader:
-                row = str(row)
-                results = re.findall(pattern, row)
-                print(results)
+                results = re.findall(pattern, str(row))
+                if results:
+                  match_results.append(row)                
+
+        print(match_results)
 
                 
-    
-    
 #then close program and ask to go through options again
 
 def run_script():
@@ -97,3 +99,4 @@ def run_script():
         
 #run script
 ask_question()
+
